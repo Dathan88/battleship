@@ -5,7 +5,7 @@ const Shipyard = (name, length) => {
 			.fill(1)
 			.map((_, i) => 1 + i),
 	];
-	console.log(ship_hull);
+	// console.log(ship_hull);
 	const isSunk = x => {
 		if (Math.max.apply(null, ship_hull) === 0) {
 			// console.log('Ship has sunk');
@@ -27,7 +27,7 @@ const Shipyard = (name, length) => {
 
 export default Shipyard;
 
-const tug = Shipyard('Tugboat', 5);
+// const tug = Shipyard('Tugboat', 5);
 // tug.hit(1);
 // tug.hit(2);
 // tug.hit(0);
