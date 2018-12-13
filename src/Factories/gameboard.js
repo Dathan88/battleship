@@ -1,6 +1,6 @@
 import Shipyard from './shipyard.js';
 
-const Gameboard = () => {
+const Gameboard = (() => {
 	const columns = [
 		...Array(10)
 			.fill(1)
@@ -13,6 +13,7 @@ const Gameboard = () => {
 	];
 	const fleet = [];
 	const miss = [];
+	const squares = [];
 	const shotsFired = [];
 	const ship_info = {
 		aircraftCarrier: {
@@ -33,6 +34,15 @@ const Gameboard = () => {
 		cruiser: { name: 'Cruiser', length: 3, coordinates: ['H4', 'H5', 'H6'] },
 		destroyer: { name: 'Destroyer', length: 2, coordinates: ['J9', 'J10'] },
 	};
+
+	const createSquares = (() => {
+		for (let i = 0; i < 10; i++) {
+			for (let j = 0; j < 10; j++) {
+				squares.push(rows[i] + columns[j]);
+			}
+		}
+		return squares;
+	})();
 
 	const create_ships = (() => {
 		let len = Object.entries(ship_info).length;
@@ -64,7 +74,17 @@ const Gameboard = () => {
 		return miss;
 	};
 
-	return { fleet, incoming };
-};
+	const randomShots = () => {
+		let x = squares[Math.floor(Math.random() * squares.length)];
+		if (x === 0 || shotsFired.find(value => value === x) !== undefined) {
+			x = squares[Math.floor(Math.random() * squares.length)];
+		}
+		incoming(x);
+		// console.log(miss);
+		return x;
+	};
+
+	return { fleet, incoming, randomShots };
+})();
 
 export default Gameboard;
