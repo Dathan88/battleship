@@ -1,6 +1,6 @@
 import Shipyard from './shipyard.js';
 
-const Gameboard = (() => {
+const Gameboard = () => {
 	const columns = [
 		...Array(10)
 			.fill(1)
@@ -65,6 +65,6 @@ const Gameboard = (() => {
 	};
 
 	return { fleet, incoming };
-})();
+};
 
 export default Gameboard;
