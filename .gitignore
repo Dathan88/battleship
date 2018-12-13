@@ -19,6 +19,7 @@
 npm-debug.log*
 battleship.code-workspace
 .vscode
+/Sandbox
 
 gameboard.sandbox.mjs
 gameboard.sandbox.js
