@@ -21,3 +21,5 @@ battleship.code-workspace
 .vscode
 gameboard.sandbox.mjs
 gameboard.sandbox.js
+shipyard.sandbox.mjs
+shipyard.sandbox.js

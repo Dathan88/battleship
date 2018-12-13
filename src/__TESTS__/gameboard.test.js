@@ -1,20 +1,25 @@
 import Gameboard from '../../src/Factories/gameboard.js';
 
 describe('Board functionality', () => {
-	console.log(Gameboard.gameboard);
 	it('should get ship objects to be placed on board', () => {
 		expect(Gameboard.fleet).toHaveLength(5);
 	});
 
 	it('contains fn that decides if ship has been hit', () => {
-		expect(Gameboard.shots_fired()).toBe('shots fired');
+		expect(Gameboard.incoming('A3')).toEqual(
+			'Aircraft Carrier is hit but still floating'
+		);
 	});
 
-	it.skip('that keeps track of missed attacks', () => {
-		expect();
+	it('keeps track of missed attacks', () => {
+		expect(Gameboard.incoming('H10')).toContain('H10');
 	});
 
-	it.skip('that reports if all ships are sunk/or not', () => {
-		expect();
+	it.each('reports if all ships are sunk/or not', () => {
+		expect(Gameboard.incoming('J10')).toEqual(
+			'Destroyer is hit but still floating'
+		);
+		expect(Gameboard.incoming('J9')).toEqual('Destroyer has sunk');
+		expect(Gameboard.fleet).toHaveLength(4);
 	});
 });

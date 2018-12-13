@@ -1,36 +1,24 @@
-const Shipyard = (name, length) => {
+const Shipyard = (name, length, coordinates) => {
 	let health = length;
 	let ship_hull = [
 		...Array(length)
 			.fill(1)
-			.map((_, i) => 1 + i),
+			.map((_, i) => coordinates[i]),
 	];
-	// console.log(ship_hull);
-	const isSunk = x => {
+
+	const isSunk = () => {
 		if (Math.max.apply(null, ship_hull) === 0) {
-			// console.log('Ship has sunk');
-			return 'Ship has sunk';
+			return name + ' has sunk';
 		}
-		// console.log('Ship still floating');
-		return 'Ship still floating';
+		return name + ' is hit but still floating';
 	};
 
 	const hit = x => {
-		let hitPlace = (ship_hull[x] = 0);
-		// console.log(ship_hull);
-		isSunk();
-		return ship_hull;
+		ship_hull[x] = 0;
+		return isSunk();
 	};
 
-	return { name, health, length, isSunk, hit };
+	return { name, length, coordinates, health, isSunk, hit };
 };
 
 export default Shipyard;
-
-// const tug = Shipyard('Tugboat', 5);
-// tug.hit(1);
-// tug.hit(2);
-// tug.hit(0);
-// tug.hit(4);
-// tug.hit(3);
-// console.log(tug.hit(Math.floor(Math.random() * tug.length)));
