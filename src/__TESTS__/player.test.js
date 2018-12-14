@@ -1,4 +1,4 @@
-import { user, computer } from '../../src/Factories/player.sandbox';
+import { user, computer } from '../../src/Factories/player';
 
 describe('Board functionality', () => {
 	it('players take turns attacking', () => {

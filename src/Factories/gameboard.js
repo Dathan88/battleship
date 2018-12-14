@@ -13,8 +13,8 @@ const Gameboard = (() => {
 	];
 	const fleet = [];
 	const miss = [];
-	const squares = [];
 	const shotsFired = [];
+	const squares = [];
 	const ship_info = {
 		aircraftCarrier: {
 			name: 'Aircraft Carrier',
@@ -35,7 +35,7 @@ const Gameboard = (() => {
 		destroyer: { name: 'Destroyer', length: 2, coordinates: ['J9', 'J10'] },
 	};
 
-	const createSquares = (() => {
+	const _createSquares = (() => {
 		for (let i = 0; i < 10; i++) {
 			for (let j = 0; j < 10; j++) {
 				squares.push(rows[i] + columns[j]);
@@ -44,7 +44,7 @@ const Gameboard = (() => {
 		return squares;
 	})();
 
-	const create_ships = (() => {
+	const _createShips = (() => {
 		let len = Object.entries(ship_info).length;
 		for (let i = 0; i < len; i++) {
 			let values = Object.entries(ship_info)[i][1];
@@ -58,20 +58,24 @@ const Gameboard = (() => {
 		shotsFired.push(x);
 		for (let i = 0; i < fleet.length; i++) {
 			const shipSpots = fleet[i].coordinates;
-			let z = shipSpots.indexOf(x);
+			const shipName = fleet[i].name;
+			const z = shipSpots.indexOf(x);
+			const damagedShip = fleet[i].hit(z);
 
 			if (z !== -1) {
-				if (fleet[i].hit(z) === fleet[i].name + ' has sunk') {
+				if (damagedShip === shipName + ' has sunk') {
+					const sinkingShip =
+						Object.entries(ship_info)[i][1].name + ' has sunk';
 					fleet.splice(i, 1);
-					return Object.entries(ship_info)[i][1].name + ' has sunk';
+					return sinkingShip;
 				} else {
-					return fleet[i].hit(z);
+					return damagedShip;
 				}
 			} else if (z === -1 && i === 4) {
 				miss.push(x);
+				return miss;
 			}
 		}
-		return miss;
 	};
 
 	const randomShots = () => {
@@ -80,11 +84,10 @@ const Gameboard = (() => {
 			x = squares[Math.floor(Math.random() * squares.length)];
 		}
 		incoming(x);
-		// console.log(miss);
 		return x;
 	};
 
-	return { fleet, incoming, randomShots };
+	return { fleet, incoming, randomShots, squares };
 })();
 
 export default Gameboard;
