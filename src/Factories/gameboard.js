@@ -15,7 +15,6 @@ const Gameboard = (() => {
 	const miss = [];
 	const squares = [];
 	const shotsFired = [];
-	const squares = [];
 	const ship_info = {
 		aircraftCarrier: {
 			name: 'Aircraft Carrier',
@@ -35,7 +34,7 @@ const Gameboard = (() => {
 		cruiser: { name: 'Cruiser', length: 3, coordinates: ['H4', 'H5', 'H6'] },
 		destroyer: { name: 'Destroyer', length: 2, coordinates: ['J9', 'J10'] },
 	};
-
+	// eslint-disable-next-line
 	const _createSquares = (() => {
 		for (let i = 0; i < 10; i++) {
 			for (let j = 0; j < 10; j++) {
@@ -44,7 +43,7 @@ const Gameboard = (() => {
 		}
 		return squares;
 	})();
-
+	// eslint-disable-next-line
 	const _createShips = (() => {
 		let len = Object.entries(ship_info).length;
 		for (let i = 0; i < len; i++) {

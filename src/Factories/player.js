@@ -77,8 +77,10 @@ const computer = Player('Sir Francis Drake');
 
 const player_turn = () => {
 	if (turn % 2 === 0) {
+		// eslint-disable-next-line
 		return user.name + "'s " + 'turn';
 	} else {
+		// eslint-disable-next-line
 		return computer.name + "'s " + 'turn';
 	}
 };
