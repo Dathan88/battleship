@@ -1,6 +1,6 @@
 import Shipyard from './shipyard.js';
 
-const Gameboard = (() => {
+const Gameboard = () => {
 	const columns = [
 		...Array(10)
 			.fill(1)
@@ -83,11 +83,11 @@ const Gameboard = (() => {
 		if (x === 0 || shotsFired.find(value => value === x) !== undefined) {
 			x = squares[Math.floor(Math.random() * squares.length)];
 		}
-		incoming(x);
+		// incoming(x);
 		return x;
 	};
 
 	return { fleet, incoming, randomShots, squares };
-})();
+};
 
 export default Gameboard;
