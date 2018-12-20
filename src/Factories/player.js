@@ -1,7 +1,8 @@
-import Gameboard from '../Factories/gameboard';
+import Board from '../Factories/gameboard';
 
 let turn = 0;
 const Player = (name = 'Player 1') => {
+	const board = Board();
 	const shots_hit = [];
 	const shots_missed = [];
 	const getName = () => name;
@@ -9,7 +10,7 @@ const Player = (name = 'Player 1') => {
 	const attack = (x, enemy) => {
 		turn++;
 		const outcome = /(hit | sunk)/;
-		const shot = Gameboard.incoming(x);
+		const shot = board.incoming(x);
 
 		if (outcome.test(shot) === true) {
 			shots_hit.push(x);
@@ -23,8 +24,10 @@ const Player = (name = 'Player 1') => {
 	const random_attack = enemy => {
 		turn++;
 		const outcome = /(hit | sunk)/;
-		const x = Gameboard.randomShots();
-		const shot = Gameboard.incoming(x);
+		const x = board.randomShots();
+		const shot = board.incoming(x);
+		// console.log(shot, x);
+
 		const shotCondition =
 			shots_hit.indexOf(x) === -1 && shots_missed.indexOf(x) === -1;
 
@@ -44,7 +47,7 @@ const Player = (name = 'Player 1') => {
 	const smart_attack = (x, enemy) => {
 		turn++;
 		const outcome = /(hit | sunk)/;
-		const shot = Gameboard.incoming(x);
+		const shot = board.incoming(x);
 		const shotCondition =
 			shots_hit.indexOf(x) === -1 && shots_missed.indexOf(x) === -1;
 
@@ -69,6 +72,7 @@ const Player = (name = 'Player 1') => {
 		random_attack,
 		smart_attack,
 		getName,
+		board,
 	};
 };
 

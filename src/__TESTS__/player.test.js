@@ -6,6 +6,8 @@ describe('Board functionality', () => {
 	});
 
 	it('computer player makes random plays', () => {
-		expect(computer.random_attack()).not.toEqual(computer.random_attack());
+		expect(computer.random_attack(user)).not.toEqual(
+			computer.random_attack(user)
+		);
 	});
 });
