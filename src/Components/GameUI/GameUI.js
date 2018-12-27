@@ -22,7 +22,7 @@ export default class GameUI extends Component {
 					id={playersInfo.human.id + '-board-wrapper'}
 				>
 					<BoardHeader playersInfo={playersInfo.human} />
-					<Board playersInfo={playersInfo.human} />
+					<Board playersInfo={playersInfo.human} onClick={this.props.onClick} />
 				</div>
 
 				<div
@@ -30,7 +30,10 @@ export default class GameUI extends Component {
 					id={playersInfo.computer.id + '-board-wrapper'}
 				>
 					<BoardHeader playersInfo={playersInfo.computer} />
-					<Board playersInfo={playersInfo.computer} />
+					<Board
+						playersInfo={playersInfo.computer}
+						onClick={this.props.onClick}
+					/>
 				</div>
 			</div>
 		);
