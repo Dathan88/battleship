@@ -11,9 +11,14 @@ class App extends Component {
 		super(props);
 		this.handleClick = this.handleClick.bind(this);
 	}
+
 	computer_attack = () => {
 		const compAttack = computer.random_attack(user);
-		console.log(compAttack);
+		const outcome = /(sunk)/;
+		// console.log(compAttack);
+		if (outcome.test(compAttack) === true) {
+			document.getElementById('score-board').innerHTML = compAttack;
+		}
 
 		computer.shots_hit.forEach(el => {
 			document.getElementById('computer-' + el).style.backgroundColor = 'red';
@@ -27,7 +32,12 @@ class App extends Component {
 	};
 
 	handleClick(e) {
-		console.log(user.attack(e.target.innerHTML, computer));
+		const fire = user.attack(e.target.innerHTML, computer);
+		const outcome = /(sunk)/;
+		// console.log(fire);
+		if (outcome.test(fire) === true) {
+			document.getElementById('score-board').innerHTML = fire;
+		}
 
 		user.shots_hit.forEach(el => {
 			if (e.target.innerHTML === el) {
@@ -42,13 +52,18 @@ class App extends Component {
 				e.target.className = 'miss';
 			}
 		});
-		this.computer_attack();
+
+		setTimeout(() => {
+			this.computer_attack();
+		}, 200);
+
 		return (e.target.disabled = true);
 	}
 	render() {
 		return (
 			<div className='App'>
 				<header className='App-header'>Battleship</header>
+				<section id='score-board' />
 				<GameUI onClick={this.handleClick} />
 			</div>
 		);

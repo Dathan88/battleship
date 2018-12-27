@@ -14,7 +14,7 @@ const Player = (name = 'Player 1') => {
 
 		if (outcome.test(shot) === true) {
 			shots_hit.push(x);
-			return enemy.getName() + "'s " + shot + ' and it is ' + player_turn();
+			return enemy.getName() + "'s " + shot;
 		} else if (outcome.test(shot) === false) {
 			shots_missed.push(x);
 			return name + ' missed with ' + x + ' and it is ' + player_turn();
@@ -33,7 +33,7 @@ const Player = (name = 'Player 1') => {
 
 		if (outcome.test(shot) === true && shotCondition) {
 			shots_hit.push(x);
-			return enemy.getName() + "'s " + shot + ' and it is ' + player_turn();
+			return enemy.getName() + "'s " + shot;
 		} else if (outcome.test(shot) === false && shotCondition) {
 			shots_missed.push(x);
 			return name + ' missed with ' + x + ' and it is ' + player_turn();

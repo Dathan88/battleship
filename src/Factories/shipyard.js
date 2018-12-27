@@ -8,7 +8,7 @@ const Shipyard = (name, length, coordinates) => {
 
 	const isSunk = () => {
 		if (Math.max.apply(null, ship_hull) === 0) {
-			return name + ' has sunk';
+			return name + ' has sunk to the ocean floor';
 		}
 		return name + ' is hit but still floating';
 	};
