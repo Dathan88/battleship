@@ -13,6 +13,7 @@ export default class GameUI extends Component {
 			computer: {
 				name: computer.name,
 				id: 'computer',
+				disabled: true,
 			},
 		};
 		return (

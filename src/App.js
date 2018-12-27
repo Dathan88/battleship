@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import GameUI from './Components/GameUI/GameUI';
 import { user, computer } from './Factories/player';
 import './App.css';
-import './Components/GameUI/GameUI.css';
 import './Components/GameUI/Board/Squares/Squares.css';
-import './Components/GameUI/Board/Board.css';
 import './Components/GameUI/Board/Board.css';
 import './Components/GameUI/Board/BoardHeader/BoardHeader.css';
 
