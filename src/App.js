@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GameUI from './Sandbox/GameUI.sandbox';
+import GameUI from './Components/GameUI/GameUI';
 import './App.css';
 import './Components/GameUI/GameUI.css';
 import './Components/GameUI/Board/Squares/Squares.css';

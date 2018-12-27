@@ -6,7 +6,7 @@
 	cursor: crosshair;
 }
 
-#computer-board > .board-squares {
+#computer-board > .board-squares:disabled {
 	font-size: 0.6em;
 	letter-spacing: 0.5px;
 }
@@ -18,4 +18,18 @@
 
 button:focus {
 	outline: 0;
+}
+
+.hit {
+	color: black;
+	background-color: red;
+	padding: 0px 2px;
+	border: 1px solid black;
+}
+
+.miss {
+	color: black;
+	background-color: white;
+	padding: 0px 2px;
+	border: 1px solid black;
 }
