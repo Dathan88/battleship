@@ -64,6 +64,16 @@ const Player = (name = 'Player 1') => {
 		}
 	};
 
+	const player_turn = () => {
+		if (turn % 2 === 0) {
+			// eslint-disable-next-line
+			return user.name + "'s " + 'turn';
+		} else {
+			// eslint-disable-next-line
+			return computer.name + "'s " + 'turn';
+		}
+	};
+
 	return {
 		name,
 		shots_hit,
@@ -73,20 +83,11 @@ const Player = (name = 'Player 1') => {
 		smart_attack,
 		getName,
 		board,
+		player_turn,
 	};
 };
 
 const user = Player('Player 1');
 const computer = Player('Sir Francis Drake');
-
-const player_turn = () => {
-	if (turn % 2 === 0) {
-		// eslint-disable-next-line
-		return user.name + "'s " + 'turn';
-	} else {
-		// eslint-disable-next-line
-		return computer.name + "'s " + 'turn';
-	}
-};
 
 export { user, computer };
