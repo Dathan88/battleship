@@ -63,9 +63,10 @@ const Gameboard = () => {
 			const damagedShip = fleet[i].hit(z);
 
 			if (z !== -1) {
-				if (damagedShip === shipName + ' has sunk') {
+				if (damagedShip === shipName + ' has sunk to the ocean floor') {
 					const sinkingShip =
-						Object.entries(ship_info)[i][1].name + ' has sunk';
+						Object.entries(ship_info)[i][1].name +
+						' has sunk to the ocean floor';
 					fleet.splice(i, 1);
 					return sinkingShip;
 				} else {
