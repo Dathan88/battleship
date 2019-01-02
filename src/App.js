@@ -12,12 +12,26 @@ class App extends Component {
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	componentDidMount() {
-		document.getElementById('scoreboard').innerHTML = this.players_info();
-	}
-
 	userNum = 0;
 	compNum = 0;
+
+	componentDidMount() {
+		document.getElementById('scoreboard').innerHTML = this.players_info();
+
+		//marks player ships on computer board
+		computer.board.fleet.forEach(el => {
+			el.coordinates.forEach(element => {
+				document.getElementById('computer-' + element).style.backgroundColor =
+					'lightGray';
+				document.getElementById('computer-' + element).style.color = 'black';
+				document.getElementById('computer-' + element).style.borderColor =
+					'white';
+				console.log(element);
+			});
+			console.log(el.coordinates);
+		});
+	}
+
 	players_info = () => {
 		return (
 			user.name +
