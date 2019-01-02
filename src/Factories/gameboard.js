@@ -120,13 +120,11 @@ const Gameboard = () => {
 			const shipName = fleet[i].name;
 			const z = shipSpots.indexOf(x);
 			const damagedShip = fleet[i].hit(z);
+			const sinkingShip =
+				Object.entries(ship_info)[i][1].name + ' has sunk to the ocean floor';
 
 			if (z !== -1) {
 				if (damagedShip === shipName + ' has sunk to the ocean floor') {
-					const sinkingShip =
-						Object.entries(ship_info)[i][1].name +
-						' has sunk to the ocean floor';
-					fleet.splice(i, 1);
 					return sinkingShip;
 				} else {
 					return damagedShip;
@@ -147,7 +145,7 @@ const Gameboard = () => {
 		return x;
 	};
 
-	return { fleet, incoming, randomShots, squares };
+	return { fleet, incoming, randomShots, squares, shotsFired };
 };
 
 export default Gameboard;

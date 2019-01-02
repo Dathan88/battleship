@@ -12,9 +12,6 @@ class App extends Component {
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	userNum = 0;
-	compNum = 0;
-
 	componentDidMount() {
 		document.getElementById('scoreboard').innerHTML = this.players_info();
 
@@ -23,14 +20,14 @@ class App extends Component {
 			el.coordinates.forEach(element => {
 				document.getElementById('computer-' + element).style.backgroundColor =
 					'lightGray';
-				document.getElementById('computer-' + element).style.color = 'black';
 				document.getElementById('computer-' + element).style.borderColor =
 					'white';
-				console.log(element);
 			});
-			console.log(el.coordinates);
 		});
 	}
+
+	userNum = 0;
+	compNum = 0;
 
 	players_info = () => {
 		return (
@@ -93,6 +90,22 @@ class App extends Component {
 		});
 	};
 
+	checkWin = () => {
+		if (this.userNum === 5) {
+			this.commentary_array = [];
+			this.commentary_array.push(user.name + ' Wins the Game!!!');
+			this.update_commentary();
+			document.getElementById('human-board').style.pointerEvents = 'none';
+		} else if (this.computerNum === 5) {
+			document.getElementById(
+				'commentary-display'
+			).innerHTML = this.commentary_array = [];
+			this.commentary_array.push(computer.name + ' Wins the Game!!!');
+			this.update_commentary();
+			document.getElementById('human-board').style.pointerEvents = 'none';
+		}
+	};
+
 	computer_attack = () => {
 		const compAttack = computer.random_attack(user);
 		const sinking = /(sunk)/;
@@ -131,11 +144,16 @@ class App extends Component {
 		}
 		this.update_commentary();
 
-		setTimeout(() => {
-			this.computer_attack();
-		}, 300);
+		if (this.userNum === 5 || this.compNum === 5) {
+			this.checkWin();
+		} else {
+			setTimeout(() => {
+				this.computer_attack();
+			}, 300);
+		}
 
 		document.getElementById('scoreboard').innerHTML = this.players_info();
+
 		return (e.target.disabled = true);
 	}
 
