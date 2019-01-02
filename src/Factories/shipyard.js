@@ -1,9 +1,9 @@
-const Shipyard = (name, length, coordinates) => {
+const Shipyard = (name, length) => {
 	let health = length;
 	let ship_hull = [
 		...Array(length)
 			.fill(1)
-			.map((_, i) => coordinates[i]),
+			.map((_, i) => 1 + i),
 	];
 
 	const isSunk = () => {
@@ -18,7 +18,7 @@ const Shipyard = (name, length, coordinates) => {
 		return isSunk();
 	};
 
-	return { name, length, coordinates, health, isSunk, hit };
+	return { name, length, health, isSunk, hit };
 };
 
 export default Shipyard;

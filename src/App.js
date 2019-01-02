@@ -48,35 +48,20 @@ class App extends Component {
 		document.getElementById('commentary-display').innerHTML = text;
 	}
 
-	computer_attack = () => {
-		const compAttack = computer.random_attack(user);
-		const sinking = /(sunk)/;
-		const shipHit = /(hit)/;
+	updateComputerBoard() {
+		computer.shots_hit.forEach(el => {
+			document.getElementById('computer-' + el).style.backgroundColor = 'red';
+			document.getElementById('computer-' + el).style.color = 'black';
+		});
 
-		if (sinking.test(compAttack) === true) {
-			this.compNum++;
-			this.commentary_array.push(compAttack);
-		} else if (shipHit.test(compAttack) === true) {
-			this.commentary_array.push('Sir Francis Drake Hit Your Ship');
-			computer.shots_hit.forEach(el => {
-				document.getElementById('computer-' + el).style.backgroundColor = 'red';
-				document.getElementById('computer-' + el).style.color = 'black';
-			});
-		} else if (
-			sinking.test(compAttack) !== true &&
-			shipHit.test(compAttack) !== true
-		) {
-			this.commentary_array.push('Sir Francis Drake Missed');
-			computer.shots_missed.forEach(el => {
-				document.getElementById('computer-' + el).style.backgroundColor =
-					'white';
-				document.getElementById('computer-' + el).style.color = 'black';
-			});
-		}
+		computer.shots_missed.forEach(el => {
+			document.getElementById('computer-' + el).style.backgroundColor = 'white';
+			document.getElementById('computer-' + el).style.color = 'black';
+		});
 
 		this.update_commentary();
 		document.getElementById('scoreboard').innerHTML = this.players_info();
-	};
+	}
 
 	checkHit = e => {
 		user.shots_hit.forEach(el => {
@@ -92,6 +77,26 @@ class App extends Component {
 				e.target.className = 'miss';
 			}
 		});
+	};
+
+	computer_attack = () => {
+		const compAttack = computer.random_attack(user);
+		const sinking = /(sunk)/;
+		const shipHit = /(hit)/;
+
+		if (sinking.test(compAttack) === true) {
+			this.compNum++;
+			this.commentary_array.push(compAttack);
+		} else if (shipHit.test(compAttack) === true) {
+			this.commentary_array.push(computer.name + ' Hit Your Ship');
+		} else if (
+			sinking.test(compAttack) !== true &&
+			shipHit.test(compAttack) !== true
+		) {
+			this.commentary_array.push(computer.name + ' Missed');
+		}
+
+		this.updateComputerBoard();
 	};
 
 	handleClick(e) {
@@ -114,7 +119,7 @@ class App extends Component {
 
 		setTimeout(() => {
 			this.computer_attack();
-		}, 200);
+		}, 300);
 
 		document.getElementById('scoreboard').innerHTML = this.players_info();
 		return (e.target.disabled = true);
@@ -131,5 +136,5 @@ class App extends Component {
 		);
 	}
 }
-
+console.log(user.board.fleet, ' ', computer.board.fleet);
 export default App;

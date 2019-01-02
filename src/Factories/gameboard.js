@@ -15,24 +15,22 @@ const Gameboard = () => {
 	const miss = [];
 	const squares = [];
 	const shotsFired = [];
+	const taken_spots = [];
 	const ship_info = {
 		aircraftCarrier: {
 			name: 'Aircraft Carrier',
 			length: 5,
-			coordinates: ['A1', 'A2', 'A3', 'A4', 'A5'],
 		},
 		battleship: {
 			name: 'Battleship',
 			length: 4,
-			coordinates: ['B6', 'C6', 'D6', 'E6'],
 		},
 		submarine: {
 			name: 'Submarine',
 			length: 3,
-			coordinates: ['D2', 'E2', 'F2'],
 		},
-		cruiser: { name: 'Cruiser', length: 3, coordinates: ['H4', 'H5', 'H6'] },
-		destroyer: { name: 'Destroyer', length: 2, coordinates: ['J9', 'J10'] },
+		cruiser: { name: 'Cruiser', length: 3 },
+		destroyer: { name: 'Destroyer', length: 2 },
 	};
 	// eslint-disable-next-line
 	const _createSquares = (() => {
@@ -51,6 +49,67 @@ const Gameboard = () => {
 			const build = Shipyard(values.name, values.length, values.coordinates);
 
 			fleet.push(build);
+		}
+	})();
+
+	const randomNum = (x = squares.length) => {
+		return Math.floor(Math.random() * x);
+	};
+
+	const checkPlacement = x => {
+		return taken_spots.find(el => el === x);
+	};
+
+	const ship_placement = (() => {
+		for (let i = 0; i < fleet.length; i++) {
+			let shipPos = (fleet[i].coordinates = []);
+			let random = randomNum(10);
+
+			if (random < 5) {
+				//row placement
+				random = randomNum(10);
+				restartLoop2: for (let j = 0; j < fleet[i].length; j++) {
+					let shipRow = rows[random];
+					shipPos[j] = shipRow + columns[random + j];
+
+					if (shipPos[j] === shipRow + 'undefined') {
+						shipPos = fleet[i].coordinates = [];
+						j = -1;
+						random = randomNum(10);
+						continue restartLoop2;
+					} else if (checkPlacement(shipPos[j]) === shipPos[j]) {
+						shipPos = fleet[i].coordinates = [];
+						j = -1;
+						random = randomNum(10);
+						continue restartLoop2;
+					}
+				}
+				shipPos.forEach(el => {
+					taken_spots.push(el);
+				});
+			} else {
+				//column placement
+				random = randomNum(10);
+				restartLoop3: for (let k = 0; k < fleet[i].length; k++) {
+					let shipColumn = [columns[random]];
+					shipPos[k] = rows[random + k] + shipColumn;
+
+					if (shipPos[k] === 'undefined' + shipColumn.toString()) {
+						shipPos = fleet[i].coordinates = [];
+						k = -1;
+						random = randomNum(10);
+						continue restartLoop3;
+					} else if (checkPlacement(shipPos[k]) === shipPos[k]) {
+						shipPos = fleet[i].coordinates = [];
+						k = -1;
+						random = randomNum(10);
+						continue restartLoop3;
+					}
+				}
+				shipPos.forEach(el => {
+					taken_spots.push(el);
+				});
+			}
 		}
 	})();
 
