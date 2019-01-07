@@ -33,3 +33,14 @@ button:focus {
 	padding: 0px 2px;
 	border: 1px solid black;
 }
+
+.playerShips {
+	background-color: black;
+	font-size: 0.6em;
+	letter-spacing: 0.5px;
+	padding: 0px 2px;
+	border: 1px dotted lime;
+	color: white;
+	cursor: crosshair;
+	border-radius: 10px;
+}
