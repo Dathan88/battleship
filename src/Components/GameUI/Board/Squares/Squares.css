@@ -1,37 +1,55 @@
-.board-squares {
+#human-board > .board-squares {
 	padding: 0px 2px;
 	border: 1px solid black;
-	background-color: darkgrey;
+	background-color: #bbbbbb;
 	color: black;
-	cursor: crosshair;
-}
-
-#computer-board > .board-squares:disabled {
-	font-size: 0.6em;
-	letter-spacing: 0.5px;
 }
 
 #human-board > .board-squares:hover {
 	background-color: black;
 	color: white;
+	cursor: crosshair;
 }
 
-button:focus {
-	outline: 0;
-}
-
-.hit {
+#human-board > .hit {
 	color: black;
 	background-color: red;
 	padding: 0px 2px;
 	border: 1px solid black;
 }
 
-.miss {
+#human-board > .miss {
 	color: black;
 	background-color: white;
 	padding: 0px 2px;
 	border: 1px solid black;
+}
+
+#computer-board > .board-squares {
+	background-color: #bbbbbb;
+	font-size: 0.6em;
+	letter-spacing: 0.5px;
+	padding: 0px 2px;
+	border: 1px solid black;
+	pointer-events: none;
+}
+
+#computer-board > .hit {
+	color: black;
+	background-color: red;
+	padding: 0px 2px;
+	border: 1px solid black;
+	font-size: 0.6em;
+	letter-spacing: 0.5px;
+}
+
+#computer-board > .miss {
+	color: black;
+	background-color: white;
+	padding: 0px 2px;
+	border: 1px solid black;
+	letter-spacing: 0.5px;
+	font-size: 0.6em;
 }
 
 .playerShips {
@@ -39,8 +57,11 @@ button:focus {
 	font-size: 0.6em;
 	letter-spacing: 0.5px;
 	padding: 0px 2px;
-	border: 1px dotted lime;
+	border: 1px solid black;
 	color: white;
-	cursor: crosshair;
 	border-radius: 10px;
+}
+
+button:focus {
+	outline: 0;
 }

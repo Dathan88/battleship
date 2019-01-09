@@ -1,18 +1,3 @@
-.play-area {
-	width: 80%;
-	min-height: 100%;
-	display: inline-block;
-}
-
-#human-board-wrapper {
-	float: right;
-	margin: 8% 34.1% 0 0;
-}
-
-#computer-board-wrapper {
-	float: left;
-	margin: 1% 0 0 0;
-}
 #human-board {
 	width: 24em;
 	height: 24em;
@@ -27,8 +12,8 @@
 }
 
 #computer-board {
-	width: 17em;
-	height: 17em;
+	width: 19em;
+	height: 19em;
 	display: grid;
 	grid-gap: 0.2em;
 	padding: 0.2em;
@@ -36,5 +21,4 @@
 	position: relative;
 	grid-template-columns: repeat(10, 1fr);
 	background-color: royalblue;
-	cursor: crosshair;
 }

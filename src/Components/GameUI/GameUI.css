@@ -1,0 +1,15 @@
+.play-area {
+	width: 80%;
+	min-height: 100%;
+	display: inline-block;
+}
+
+#human-board-wrapper {
+	float: right;
+	margin: 8% 35.5% 0 0;
+}
+
+#computer-board-wrapper {
+	float: left;
+	margin: 1% 0 0 0;
+}
