@@ -1,6 +1,9 @@
 .play-area {
+	position: fixed;
 	width: 80%;
 	min-height: 100%;
+	top: 4rem;
+	left: 10.5rem;
 	display: inline-block;
 }
 

@@ -1,5 +1,5 @@
 #human-board > .board-squares {
-	padding: 0px 2px;
+	padding: 0px 0.125rem;
 	border: 1px solid black;
 	background-color: #bbbbbb;
 	color: black;
@@ -14,14 +14,14 @@
 #human-board > .hit {
 	color: black;
 	background-color: red;
-	padding: 0px 2px;
+	padding: 0px 0.125rem;
 	border: 1px solid black;
 }
 
 #human-board > .miss {
 	color: black;
 	background-color: white;
-	padding: 0px 2px;
+	padding: 0px 0.125rem;
 	border: 1px solid black;
 }
 
@@ -29,7 +29,7 @@
 	background-color: #bbbbbb;
 	font-size: 0.6em;
 	letter-spacing: 0.5px;
-	padding: 0px 2px;
+	padding: 0px 0.125rem;
 	border: 1px solid black;
 	pointer-events: none;
 }
@@ -37,7 +37,7 @@
 #computer-board > .hit {
 	color: black;
 	background-color: red;
-	padding: 0px 2px;
+	padding: 0px 0.125rem;
 	border: 1px solid black;
 	font-size: 0.6em;
 	letter-spacing: 0.5px;
@@ -46,7 +46,7 @@
 #computer-board > .miss {
 	color: black;
 	background-color: white;
-	padding: 0px 2px;
+	padding: 0px 0.125rem;
 	border: 1px solid black;
 	letter-spacing: 0.5px;
 	font-size: 0.6em;
@@ -56,10 +56,10 @@
 	background-color: black;
 	font-size: 0.6em;
 	letter-spacing: 0.5px;
-	padding: 0px 2px;
+	padding: 0px 0.125rem;
 	border: 1px solid black;
 	color: white;
-	border-radius: 10px;
+	border-radius: 0.625rem;
 }
 
 button:focus {
