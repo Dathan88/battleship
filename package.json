@@ -16,8 +16,7 @@
 	},
 	"homepage": "https://github.com/Dathan88/battleship#readme",
 	"dependencies": {
-		"classnames": "^2.2.6",
-		"esm": "^3.0.84",
+		"esm": "^3.1.1",
 		"jquery": "^3.3.1",
 		"react": "^16.7.0",
 		"react-dom": "^16.7.0",
