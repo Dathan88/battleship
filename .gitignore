@@ -7,7 +7,7 @@
 /coverage
 
 # production
-/build
+
 
 # misc
 .DS_Store
@@ -29,5 +29,3 @@ shipyard.sandbox.js
 
 player.sandbox.js
 player.sandbox.mjs
-
-serve.json
