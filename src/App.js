@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import GameUI from './Components/GameUI';
 import { current_player, user, computer } from './Factories/player';
 import './App.css';
@@ -142,23 +143,25 @@ class App extends Component {
 		};
 
 		return (
-			<div className={'App ' + this.state.disableApp}>
-				<header className='App-header'>Battleship</header>
-				<section className='scoreboard'>
-					{user.name + "'s Score: " + this.state.userNum}
-				</section>
-				<section className='scoreboard'>
-					{computer.name + "'s Score: " + this.state.compNum}
-				</section>
-				<section id='commentary-display'>{this.state.commentary}</section>
-				<GameUI
-					onClick={e => {
-						this.handleClick(e);
-						hitOrMiss(e);
-					}}
-					squaresClass={this.state.squaresClass}
-				/>
-			</div>
+			<Router>
+				<div className={'App ' + this.state.disableApp}>
+					<header className='App-header'>Battleship</header>
+					<section className='scoreboard'>
+						{user.name + "'s Score: " + this.state.userNum}
+					</section>
+					<section className='scoreboard'>
+						{computer.name + "'s Score: " + this.state.compNum}
+					</section>
+					<section id='commentary-display'>{this.state.commentary}</section>
+					<GameUI
+						onClick={e => {
+							this.handleClick(e);
+							hitOrMiss(e);
+						}}
+						squaresClass={this.state.squaresClass}
+					/>
+				</div>
+			</Router>
 		);
 	}
 }
