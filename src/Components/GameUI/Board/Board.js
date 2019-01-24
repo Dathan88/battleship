@@ -8,6 +8,7 @@ export default class Board extends Component {
 				<Squares
 					onClick={this.props.onClick}
 					playersInfo={this.props.playersInfo}
+					squaresClass={this.props.squaresClass}
 				/>
 			</div>
 		);

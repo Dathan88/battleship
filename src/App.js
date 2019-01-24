@@ -1,172 +1,166 @@
 import React, { Component } from 'react';
 import GameUI from './Components/GameUI/GameUI';
-import { user, computer } from './Factories/player';
+import { current_player, user, computer } from './Factories/player';
 import './App.css';
 import './Components/GameUI/Board/Squares/Squares.css';
 import './Components/GameUI/Board/Board.css';
 import './Components/GameUI/Board/BoardHeader/BoardHeader.css';
+import './Components/GameUI/GameUI.css';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.handleClick = this.handleClick.bind(this);
+		this.state = {
+			userNum: 0,
+			compNum: 0,
+			commentary: '',
+			disableApp: '',
+			game_over: false,
+			squaresClass: 'board-squares',
+		};
 	}
 
 	componentDidMount() {
-		document.getElementById('scoreboard').innerHTML = this.players_info();
-
 		//marks player ships on computer board
 		computer.board.fleet.forEach(el => {
 			el.coordinates.forEach(element => {
-				document.getElementById('computer-' + element).style.backgroundColor =
-					'lightGray';
-				document.getElementById('computer-' + element).style.borderColor =
-					'white';
+				document
+					.getElementById('computer-' + element)
+					.setAttribute('class', 'playerShips');
 			});
 		});
 	}
 
-	userNum = 0;
-	compNum = 0;
-
-	players_info = () => {
-		return (
-			user.name +
-			' enemy ships sunk = ' +
-			this.userNum +
-			' <br> ' +
-			computer.name +
-			' enemy ships sunk = ' +
-			this.compNum
-		);
-	};
+	enemy = () => (current_player() === user ? computer : user);
 
 	commentary_array = [];
 
-	update_commentary() {
-		let text = '<ul>';
+	update_kills() {
+		this.setState({
+			userNum: user.board.kills.length,
+			compNum: computer.board.kills.length,
+		});
+	}
 
-		for (let i = 0; i < this.commentary_array.length; i++) {
-			text += '<ul>' + this.commentary_array[i] + '</ul>';
+	update_commentary(x) {
+		//this.enemy() is player that just fired
+		const playerName = this.enemy().name;
+		const enemy = current_player().name;
+		const kills = this.enemy().board.kills;
+		const shipSunk = kills[kills.length - 1];
+		const miss = this.enemy().name + ' missed';
+		const hit = playerName + ' damaged ' + enemy + "'s ship";
+		const sinking = playerName + ' sunk ' + enemy + "'s " + shipSunk;
+
+		switch (x) {
+			case null:
+				this.commentary_array.push(miss);
+				break;
+			case false:
+				this.commentary_array.push(hit);
+				break;
+			case true:
+				this.commentary_array.push(sinking);
+				this.update_kills();
+				this.checkWin();
+				break;
+			default:
+				console.log('update_commentary switch error');
 		}
-
-		text += '</ul>';
 
 		if (this.commentary_array.length === 6) {
 			this.commentary_array.shift();
 		}
 
-		document.getElementById('commentary-display').innerHTML = text;
+		const text = this.commentary_array.map((x, i) => (
+			<React.Fragment key={i}>
+				{x}
+				<br />
+			</React.Fragment>
+		));
+
+		this.setState({
+			commentary: text,
+		});
+
+		this.checkWin();
 	}
-
-	updateComputerBoard() {
-		computer.shots_hit.forEach(el => {
-			document.getElementById('computer-' + el).style.backgroundColor = 'red';
-			document.getElementById('computer-' + el).style.color = 'black';
-		});
-
-		computer.shots_missed.forEach(el => {
-			document.getElementById('computer-' + el).style.backgroundColor = 'white';
-			document.getElementById('computer-' + el).style.color = 'black';
-		});
-
-		this.update_commentary();
-		document.getElementById('scoreboard').innerHTML = this.players_info();
-	}
-
-	checkHit = e => {
-		user.shots_hit.forEach(el => {
-			if (e.target.innerHTML === el) {
-				e.target.className = 'hit';
-			}
-		});
-	};
-
-	checkMiss = e => {
-		user.shots_missed.forEach(el => {
-			if (e.target.innerHTML === el) {
-				e.target.className = 'miss';
-			}
-		});
-	};
 
 	checkWin = () => {
-		if (this.userNum === 5) {
+		if (this.state.userNum === 5 || this.state.compNum === 5) {
 			this.commentary_array = [];
-			this.commentary_array.push(user.name + ' Wins the Game!!!');
-			this.update_commentary();
-			document.getElementById('human-board').style.pointerEvents = 'none';
-		} else if (this.computerNum === 5) {
-			document.getElementById(
-				'commentary-display'
-			).innerHTML = this.commentary_array = [];
-			this.commentary_array.push(computer.name + ' Wins the Game!!!');
-			this.update_commentary();
-			document.getElementById('human-board').style.pointerEvents = 'none';
+			const gameOver = this.enemy().name + ' Wins the Game!!!';
+			this.commentary_array.push(gameOver);
+
+			const winningText = this.commentary_array.map((x, i) => (
+				<React.Fragment key={i}>
+					{x}
+					<br />
+				</React.Fragment>
+			));
+
+			this.setState({
+				commentary: winningText,
+				disableApp: 'disabled',
+				game_over: true,
+			});
 		}
 	};
 
 	computer_attack = () => {
-		const compAttack = computer.random_attack(user);
-		const sinking = /(sunk)/;
-		const shipHit = /(hit)/;
+		const x = computer.comp_attack();
 
-		if (sinking.test(compAttack) === true) {
-			this.compNum++;
-			this.commentary_array.push(compAttack);
-		} else if (shipHit.test(compAttack) === true) {
-			this.commentary_array.push(computer.name + ' Hit Your Ship');
-		} else if (
-			sinking.test(compAttack) !== true &&
-			shipHit.test(compAttack) !== true
-		) {
-			this.commentary_array.push(computer.name + ' Missed');
-		}
-
-		this.updateComputerBoard();
+		x.click();
 	};
 
 	handleClick(e) {
-		const fire = user.attack(e.target.innerHTML, computer);
-		const sinking = /(sunk)/;
-		const shipHit = /(hit)/;
+		const fire = current_player().attack(e.target.innerHTML, this.enemy());
 
-		if (sinking.test(fire) === true) {
-			this.userNum++;
-			this.commentary_array.push(fire);
-			this.checkHit(e);
-		} else if (shipHit.test(fire) === true) {
-			this.commentary_array.push("You Hit Sir Francis Drake's ship");
-			this.checkHit(e);
-		} else if (sinking.test(fire) !== true && shipHit.test(fire) !== true) {
-			this.commentary_array.push('You Missed');
-			this.checkMiss(e);
-		}
-		this.update_commentary();
+		this.update_commentary(fire);
 
-		if (this.userNum === 5 || this.compNum === 5) {
+		setTimeout(() => {
 			this.checkWin();
-		} else {
-			setTimeout(() => {
+			if (current_player() === computer && this.state.game_over === false) {
 				this.computer_attack();
-			}, 300);
-		}
-
-		document.getElementById('scoreboard').innerHTML = this.players_info();
-
-		return (e.target.disabled = true);
+			}
+		}, 100);
 	}
 
 	render() {
+		//using this.enemy because player turn switches instantly
+		//here enemy is player that just clicked
+
+		const hitOrMiss = e => {
+			const checkSquare = this.enemy().check_wounded_ship(e.target.innerHTML);
+
+			if (checkSquare === true) {
+				e.target.className = 'hit ' + 'disabled';
+			} else if (checkSquare === false) {
+				e.target.className = 'miss ' + 'disabled';
+			}
+		};
+
 		return (
-			<div className='App'>
+			<div className={'App ' + this.state.disableApp}>
 				<header className='App-header'>Battleship</header>
-				<section id='scoreboard' />
-				<section id='commentary-display' />
-				<GameUI onClick={this.handleClick} />
+				<section className='scoreboard'>
+					{user.name + "'s Score: " + this.state.userNum}
+				</section>
+				<section className='scoreboard'>
+					{computer.name + "'s Score: " + this.state.compNum}
+				</section>
+				<section id='commentary-display'>{this.state.commentary}</section>
+				<GameUI
+					onClick={e => {
+						this.handleClick(e);
+						hitOrMiss(e);
+					}}
+					squaresClass={this.state.squaresClass}
+				/>
 			</div>
 		);
 	}
 }
-console.log(user.board.fleet, ' ', computer.board.fleet);
+
 export default App;

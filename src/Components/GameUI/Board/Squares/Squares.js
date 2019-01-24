@@ -6,15 +6,14 @@ export default class Squares extends Component {
 		const boardSquares = [];
 		Gameboard().squares.forEach((el, i) => {
 			boardSquares.push(
-				<button
-					className={'board-squares'}
+				<div
+					className={this.props.squaresClass}
 					id={this.props.playersInfo.id + '-' + el}
 					key={i}
-					disabled={this.props.playersInfo.disabled}
 					onClick={this.props.onClick}
 				>
 					{el}
-				</button>
+				</div>
 			);
 		});
 		return boardSquares;
