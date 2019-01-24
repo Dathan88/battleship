@@ -127,7 +127,6 @@ const Gameboard = () => {
 	const incoming = (x, enemy) => {
 		//stores all shots regardless of outcome
 		shotsFired.push(x);
-		const updateBoard = squares.findIndex(sq => sq === x);
 
 		for (let i = 0; i < fleet.length; i++) {
 			//if x value in ship coordinates return index/-1 if not
