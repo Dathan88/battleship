@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GameUI from '../Components/GameUI/GameUI';
+import GameUI from '../Components/GameUI';
 
 test('renders without crashing', () => {
 	const div = document.createElement('div');
