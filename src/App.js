@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import GameUI from './Components/GameUI/GameUI';
+import GameUI from './Components/GameUI';
 import { current_player, user, computer } from './Factories/player';
 import './App.css';
-import './Components/GameUI/Board/Squares/Squares.css';
-import './Components/GameUI/Board/Board.css';
-import './Components/GameUI/Board/BoardHeader/BoardHeader.css';
-import './Components/GameUI/GameUI.css';
+import './Components/Squares.css';
+import './Components/Board.css';
+import './Components/BoardHeader.css';
+import './Components/GameUI.css';
 
 class App extends Component {
 	constructor(props) {

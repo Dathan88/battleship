@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import BoardHeader from './Board/BoardHeader/BoardHeader';
-import Board from './Board/Board';
-import { user, computer } from '../../Factories/player';
+import BoardHeader from './BoardHeader';
+import Board from './Board';
+import { user, computer } from '../Factories/player';
 
 export default class GameUI extends Component {
 	render() {

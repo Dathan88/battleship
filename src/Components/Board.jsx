@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Squares from '../../GameUI/Board/Squares/Squares';
+import Squares from './Squares';
 
 export default class Board extends Component {
 	render() {
