@@ -6,11 +6,12 @@
 	"main": "index.js",
 	"repository": {
 		"type": "git",
-		"url": ""
+		"url": "https://github.com/dathan88/battleship.git"
 	},
 	"keywords": [],
 	"author": "Dathan Spencer <dpspencer88@gmail.com>",
 	"license": "ISC",
+	"homepage": "http://dathan88.github.io/battleship",
 	"dependencies": {
 		"esm": "^3.1.1",
 		"jquery": "^3.3.1",
@@ -24,7 +25,9 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -b master -d build"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
@@ -38,6 +41,7 @@
 	"devDependencies": {
 		"@babel/cli": "^7.2.3",
 		"@babel/core": "^7.2.2",
-		"@babel/node": "^7.2.2"
+		"@babel/node": "^7.2.2",
+		"gh-pages": "^2.0.1"
 	}
 }
