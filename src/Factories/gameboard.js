@@ -36,6 +36,7 @@ const Gameboard = () => {
 	};
 
 	//digital version of board placed into squares array
+	//eslint-disable-next-line
 	const _createSquares = (() => {
 		for (let i = 0; i < 10; i++) {
 			for (let j = 0; j < 10; j++) {
@@ -46,6 +47,7 @@ const Gameboard = () => {
 	})();
 
 	//send ship_info to shipyard and place into fleet
+	//eslint-disable-next-line
 	const _createShips = (() => {
 		let len = Object.entries(ship_info).length;
 		for (let i = 0; i < len; i++) {
@@ -66,6 +68,7 @@ const Gameboard = () => {
 		return shipSpots.find(el => el === x);
 	};
 
+	//eslint-disable-next-line
 	const ship_placement = (() => {
 		for (let i = 0; i < fleet.length; i++) {
 			let shipPos = (fleet[i].coordinates = []);

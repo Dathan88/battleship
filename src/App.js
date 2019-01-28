@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import GameUI from './Components/GameUI';
 import { current_player, user, computer } from './Factories/player';
 import './App.css';
@@ -20,17 +20,6 @@ class App extends Component {
 			game_over: false,
 			squaresClass: 'board-squares',
 		};
-	}
-
-	componentDidMount() {
-		//marks player ships on computer board
-		computer.board.fleet.forEach(el => {
-			el.coordinates.forEach(element => {
-				document
-					.getElementById('computer-' + element)
-					.setAttribute('class', 'playerShips');
-			});
-		});
 	}
 
 	enemy = () => (current_player() === user ? computer : user);
@@ -129,19 +118,6 @@ class App extends Component {
 	}
 
 	render() {
-		//using this.enemy because player turn switches instantly
-		//here enemy is player that just clicked
-
-		const hitOrMiss = e => {
-			const checkSquare = this.enemy().check_wounded_ship(e.target.innerHTML);
-
-			if (checkSquare === true) {
-				e.target.className = 'hit ' + 'disabled';
-			} else if (checkSquare === false) {
-				e.target.className = 'miss ' + 'disabled';
-			}
-		};
-
 		return (
 			<Router>
 				<div className={'App ' + this.state.disableApp}>
@@ -153,13 +129,7 @@ class App extends Component {
 						{computer.name + "'s Score: " + this.state.compNum}
 					</section>
 					<section id='commentary-display'>{this.state.commentary}</section>
-					<GameUI
-						onClick={e => {
-							this.handleClick(e);
-							hitOrMiss(e);
-						}}
-						squaresClass={this.state.squaresClass}
-					/>
+					<GameUI onClick={this.handleClick} />
 				</div>
 			</Router>
 		);

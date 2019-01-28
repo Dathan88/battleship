@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
-import Gameboard from '../Factories/gameboard';
+import React from 'react';
 
-export default class Squares extends Component {
-	render() {
-		const BoardSquares = [];
-		Gameboard().squares.forEach((el, i) => {
-			BoardSquares.push(
-				<div
-					className={this.props.squaresClass}
-					id={this.props.playersInfo.id + '-' + el}
-					key={i}
-					onClick={this.props.onClick}
-				>
-					{el}
-				</div>
-			);
-		});
+const Squares = props => {
+	return (
+		<div
+			className={props.squaresClass}
+			id={props.id}
+			onClick={props.onClick}
+			onMouseDown={props.onMouseDown}
+			value={props.value}
+			key={props.position}
+		>
+			{props.value}
+		</div>
+	);
+};
 
-		return BoardSquares;
-	}
-}
+export default Squares;

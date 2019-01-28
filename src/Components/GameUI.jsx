@@ -9,10 +9,14 @@ export default class GameUI extends Component {
 			human: {
 				name: user.name,
 				id: 'human',
+				board: user.board,
+				squares: user.board.squares,
 			},
 			computer: {
 				name: computer.name,
 				id: 'computer',
+				board: computer.board,
+				squares: computer.board.squares,
 			},
 		};
 		return (
@@ -22,11 +26,7 @@ export default class GameUI extends Component {
 					id={playersInfo.human.id + '-board-wrapper'}
 				>
 					<BoardHeader playersInfo={playersInfo.human} />
-					<Board
-						playersInfo={playersInfo.human}
-						onClick={this.props.onClick}
-						squaresClass={this.props.squaresClass}
-					/>
+					<Board playersInfo={playersInfo.human} onClick={this.props.onClick} />
 				</div>
 
 				<div
@@ -37,7 +37,6 @@ export default class GameUI extends Component {
 					<Board
 						playersInfo={playersInfo.computer}
 						onClick={this.props.onClick}
-						squaresClass={this.props.squaresClass}
 					/>
 				</div>
 			</div>
