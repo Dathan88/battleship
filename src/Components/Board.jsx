@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Squares from './Squares';
-import classNames, * as CX from 'classnames';
+import classNames from 'classnames';
 
 export default class Board extends Component {
 	render() {
@@ -14,7 +14,7 @@ export default class Board extends Component {
 			const neutral =
 				hitClass === false && missClass === false && plyrShipClass === false;
 
-			return CX({
+			return classNames({
 				'board-squares': neutral,
 				hit: hitClass,
 				miss: missClass,

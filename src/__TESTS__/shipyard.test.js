@@ -12,9 +12,7 @@ describe('Ship functionality', () => {
 	});
 
 	test('registers hit', () => {
-		expect(tug.hit(Math.floor(Math.random() * tug.length))).toBe(
-			'Tugboat is hit but still floating'
-		);
+		expect(tug.hit(Math.floor(Math.random() * tug.length))).toBe(false);
 	});
 
 	test.each('if ship can sink', () => {

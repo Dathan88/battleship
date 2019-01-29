@@ -1,25 +1,23 @@
 import Gameboard from '../../src/Factories/gameboard.js';
+import { computer, user } from '../../src/Factories/player';
 
 describe('Board functionality', () => {
+	beforeEach(() => {
+		const hit = computer.board.shipSpots[2];
+		computer.attack(hit, user);
+		computer.attack('D8', user);
+		console.log(hit);
+	});
+
 	it('should get ship objects to be placed on board', () => {
-		expect(Gameboard().fleet).toHaveLength(5);
+		expect(computer.board.fleet).toHaveLength(5);
 	});
 
 	it('contains fn that decides if ship has been hit', () => {
-		expect(Gameboard().incoming('A3')).toEqual(
-			'Aircraft Carrier is hit but still floating'
-		);
+		expect(computer.board.hits.length).toBeGreaterThanOrEqual(1);
 	});
 
 	it('keeps track of missed attacks', () => {
-		expect(Gameboard().incoming('H10')).toContain('H10');
-	});
-
-	it.each('reports if all ships are sunk/or not', () => {
-		expect(Gameboard().incoming('J10')).toEqual(
-			'Destroyer is hit but still floating'
-		);
-		expect(Gameboard().incoming('J9')).toEqual('Destroyer has sunk');
-		expect(Gameboard().fleet).toHaveLength(4);
+		expect(computer.board.missed).toContain('D8');
 	});
 });
