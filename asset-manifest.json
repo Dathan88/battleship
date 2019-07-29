@@ -1,13 +1,14 @@
 {
-  "main.css": "/battleship/static/css/main.d3676400.chunk.css",
-  "main.js": "/battleship/static/js/main.5669a4e7.chunk.js",
-  "main.js.map": "/battleship/static/js/main.5669a4e7.chunk.js.map",
+  "main.css": "/battleship/static/css/main.8f8cc922.chunk.css",
+  "main.js": "/battleship/static/js/main.f69235f0.chunk.js",
+  "main.js.map": "/battleship/static/js/main.f69235f0.chunk.js.map",
   "static/js/1.9d153b63.chunk.js": "/battleship/static/js/1.9d153b63.chunk.js",
   "static/js/1.9d153b63.chunk.js.map": "/battleship/static/js/1.9d153b63.chunk.js.map",
   "runtime~main.js": "/battleship/static/js/runtime~main.71f5fd55.js",
   "runtime~main.js.map": "/battleship/static/js/runtime~main.71f5fd55.js.map",
-  "static/css/main.d3676400.chunk.css.map": "/battleship/static/css/main.d3676400.chunk.css.map",
+  "static/media/index.css": "/battleship/static/media/blue-ocean-sea-5412.ece3f649.jpg",
+  "static/css/main.8f8cc922.chunk.css.map": "/battleship/static/css/main.8f8cc922.chunk.css.map",
   "index.html": "/battleship/index.html",
-  "precache-manifest.db584fab3446d4eac113da088c006664.js": "/battleship/precache-manifest.db584fab3446d4eac113da088c006664.js",
+  "precache-manifest.b45e86e4ec32223ab5d160b24009468a.js": "/battleship/precache-manifest.b45e86e4ec32223ab5d160b24009468a.js",
   "service-worker.js": "/battleship/service-worker.js"
 }
