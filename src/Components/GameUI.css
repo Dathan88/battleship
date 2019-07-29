@@ -3,13 +3,13 @@
 	width: 80%;
 	min-height: 100%;
 	top: 4rem;
-	left: 10.5rem;
+	left: 8rem;
 	display: inline-block;
 }
 
 #human-board-wrapper {
 	float: right;
-	margin: 8% 35.5% 0 0;
+	margin: 8% 32% 0 0;
 }
 
 #computer-board-wrapper {

@@ -1,32 +1,91 @@
-#human-board > .board-squares {
-	padding: 0px 0.125rem;
-	border: 1px solid black;
-	background-color: #bbbbbb;
-	color: black;
-}
-
-#human-board > .board-squares:hover {
-	background-color: black;
-	color: white;
+.btn {
+	/* Transitions */
+	-moz-transition: 0.1s ease-out;
+	-webkit-transition: 0.1s ease-out;
+	-o-transition: 0.1s ease-out;
+	-ms-transition: 0.1s ease-out;
+	-khtml-transition: 0.1s ease-out;
+	transition: 0.1s ease-out;
+	/* Shadows */
+	box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.5);
+	-moz-box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.5);
+	-ms-box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.5);
+	-webkit-box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.5);
+	-khtml-box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.5);
+	-o-box-shadow: inset 0 0 5px 0 rgba(255, 255, 255, 0.5);
+	/*[{- Border radius -}]*/
+	border-radius: 5rem;
+	-moz-border-radius: 5rem;
+	-webkit-border-radius: 5rem;
+	-ms-border-radius: 5rem;
+	-khtml-border-radius: 5rem;
+	-o-border-radius: 5rem;
+	/* Gradient */
+	background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
+	background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
+	background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
+	background-image: -khtml-linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
+	background-image: -ms-linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
+	background-image: linear-gradient(top, transparent, rgba(0, 0, 0, 0.2));
 	cursor: crosshair;
 }
 
-#human-board > .hit {
-	color: black;
-	background-color: red;
-	padding: 0px 0.125rem;
-	border: 1px solid black;
+.btn:visited {
+	border: 2px inset black;
 }
 
-#human-board > .miss {
+#human-board > .btn {
+	padding: 0px 0.125rem;
+	border: 1px solid black;
+	/* background-color: #bbb; */
+	color: black;
+	font-size: 0.8rem;
+	line-height: 1.6rem;
+}
+
+#computer-board > .btn {
+	line-height: 1.2rem;
+}
+
+#human-board > .board-squares.btn:hover {
+	color: white;
+	background-color: #999;
+	/*{Gradient}*/
+	background-image: radial-gradient(circle, black, white);
+	/* background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.3)); */
+	/* background-image: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.3)); */
+	/* background-image: -ms-linear-gradient(top, transparent, rgba(0, 0, 0, 0.3)); */
+	/* background-image: -khtml-linear-gradient(top, transparent, rgba(0, 0, 0, 0.3)); */
+	/* background-image: -o-linear-gradient(top, transparent, rgba(0, 0, 0, 0.3)); */
+	/* background-image: linear-gradient(top, transparent, rgba(0, 0, 0, 0.3)); */
+}
+
+#human-board > .board-squares.btn:active {
+	color: #666;
+	border: 1px solid #999;
+	/*{Shadow}*/
+	box-shadow: inset 0 0 5px 0 #333;
+	-moz-box-shadow: inset 0 0 5px 0 #333;
+	-webkit-box-shadow: inset 0 1px 2px 0 #333, 0 1px 1px 0 #fff;
+}
+
+#human-board > .hit.btn {
+	color: black;
+	background-color: red;
+	text-shadow: 0 0 4px white;
+	padding: 0px 0.125rem;
+	background-image: radial-gradient(circle closest-side, red, black);
+}
+
+#human-board > .miss.btn {
 	color: black;
 	background-color: white;
 	padding: 0px 0.125rem;
-	border: 1px solid black;
+	background-image: radial-gradient(circle closest-side, white, darkgrey, black);
 }
 
-#computer-board > .board-squares {
-	background-color: #bbbbbb;
+#computer-board > .board-squares.btn {
+	/* background-color: #bbbbbb; */
 	font-size: 0.6em;
 	letter-spacing: 0.5px;
 	padding: 0px 0.125rem;
@@ -34,25 +93,25 @@
 	pointer-events: none;
 }
 
-#computer-board > .hit {
+#computer-board > .hit.btn {
 	color: black;
 	background-color: red;
 	padding: 0px 0.125rem;
-	border: 1px solid black;
+	box-shadow: inset 3px 3px 8px black;
 	font-size: 0.6em;
 	letter-spacing: 0.5px;
 }
 
-#computer-board > .miss {
+#computer-board > .miss.btn {
 	color: black;
 	background-color: white;
 	padding: 0px 0.125rem;
-	border: 1px solid black;
+	box-shadow: inset 3px 3px 8px black;
 	letter-spacing: 0.5px;
 	font-size: 0.6em;
 }
 
-.playerShips {
+.playerShips.btn {
 	background-color: black;
 	font-size: 0.6em;
 	letter-spacing: 0.5px;
@@ -62,6 +121,15 @@
 	border-radius: 0.625rem;
 }
 
-.disabled {
+.disabled.btn {
 	pointer-events: none;
+}
+
+.btn {
+	/* transition */
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+	margin: 0;
 }

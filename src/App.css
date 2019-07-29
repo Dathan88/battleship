@@ -20,15 +20,17 @@
 	font-weight: bold;
 	text-align: left;
 	width: 14rem;
+	text-shadow: 0 0 5px lightblue;
 }
 
 #commentary-display {
 	position: relative;
+	width: 22rem;
 	left: 68%;
 	top: 10rem;
 	font-weight: bold;
 	text-align: left;
-	width: 22rem;
+	text-shadow: 0 0 5px lightblue;
 }
 
 ul {

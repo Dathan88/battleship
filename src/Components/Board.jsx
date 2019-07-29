@@ -15,11 +15,11 @@ export default class Board extends Component {
 				hitClass === false && missClass === false && plyrShipClass === false;
 
 			return classNames({
-				'board-squares': neutral,
-				hit: hitClass,
-				miss: missClass,
-				playerShips: plyrShipClass,
-				disabled: hitClass || missClass,
+				'board-squares btn': neutral,
+				'hit btn': hitClass,
+				'miss btn': missClass,
+				'playerShips btn': plyrShipClass,
+				'disabled btn': hitClass || missClass,
 			});
 		};
 		return (
